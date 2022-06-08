@@ -88,18 +88,37 @@ form button:hover {
     border-radius: 4px 0 0 4px;
 }
 
+.completed{
+    opacity: 0.4;
+    text-decoration: line-through;
+}
+
 .complete_btn, .delete_btn {
-    padding: 10px 15px 10px 15px;
+    padding: 0 15px 0 15px;
     border: none;
     outline: none;
     cursor: pointer;
     transition: .3s;
+    background-color: #ff9557;
 }
 
+.complete_btn img , .delete_btn img {
+    width: 1.2rem;
+}
 
-.completed{
-    opacity: 0.4;
-    text-decoration: line-through;
+.delete_btn img {
+    width: 1.3rem;
+    margin-top: 5px;
+}
+
+.complete_btn:hover {
+    background-color: #2de72d;
+    color: #fff;
+}
+
+.delete_btn:hover {
+    background-color: #e72d2d;
+    color: #fff;
 }
 
 .delete-todo {

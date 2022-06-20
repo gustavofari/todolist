@@ -1,138 +1,118 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
 
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: "Poppins";
 }
 
 body {
-    background-color: #1a1212;
-    color: #fff;
-    font-family: sans-serif;
-    min-height: 100vh;
+    display: flex;
+    justify-content: center;
 }
 
-header {
-    font-size: 1.5rem;
-    text-decoration: none;
-    color: #fff;
-    letter-spacing: 5px;
-    background-image: linear-gradient(to top, #fa3200 0%,#ffc355 100%);
-    background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
-    text-transform: uppercase;
+.setting{
+    position: absolute;
+    top: 15px;
+    right: 20px;
 }
 
-header, form {
-    min-height: 20vh;
+.setting img {
+    width: 35px;
+}
+
+.container {
+    width: 37vw;
+    max-width: 700px;
+    margin: 0 30px;
+    margin-top: 100px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    color: #000000;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 10px;
+}
+
+.new-todo {
+    background-color: #f1f1f1;
+    padding: 0 1rem;
+    margin-top: 50px;
+    border-radius: 25px;
+    display: flex;
+}
+
+.button-add {
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-add img {
+    width: 60px;
+}
+
+.new-todo-input {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.new-todo-input form {
+    flex-grow: 1;
+}
+
+.new-todo-input input {
+    width: 100%;
+    padding: 10px 0px 10px 20px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+}
+
+.todo-item {
+    margin-top: 2px;
+    width: 100%;
+    display: flex;
+    height: 70px;
+    background-color: #f1f1f1;
+    color: #000000;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.todo-items-wrapper {
+    margin-top: 30px;
+}
+
+.todo-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+}
+
+.check {
+    width: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-form input {
-    border-radius: 5px 0 0 5px;
-    width: 25vw;
-    padding: 0 1rem;
-}
-
-form button {
-    text-align: center;
-    padding: 0 1rem;
-}
-
-form input, form button{
-    font-size: 1rem;
-    border: none;
-    background: #fff;
-    outline: none;
-    font-weight: bold;
-    
-    height: 5vh;
-}
-
-option {
-    font-weight: bold;
-}
-
-#option_main {
-    height: 5vh;
-    padding: .2rem;
-    font-size: 1rem;
-    margin-left: 3px;
-    border: none;
-    background: #fff;
-    outline: none;
-    font-weight: bold;
-}
-
-form button {
-    color: #000000;
-    background: white;
+.check-mark {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #00000093;
     cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-form button:hover {
-    background-color: #000;
-    color: #fff;
-}
-
-.todo {
-    display: flex;
-    justify-content: center;
-    margin: 10px;
-    color: #000;
-}
-
-.todo_item {
-    background-color: #fff;
-    width: 35vw;
-    padding: 10px;
-    text-align: center;
-    list-style: none;
-    border-radius: 4px 0 0 4px;
-}
-
-.completed{
-    opacity: 0.4;
-    text-decoration: line-through;
-}
-
-.complete_btn, .delete_btn {
-    padding: 0 15px 0 15px;
-    border: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    transition: .3s;
-    background-color: #ffb657;
-}
-
-.complete_btn img , .delete_btn img {
-    width: 1.2rem;
-}
-
-.delete_btn img {
-    width: 1.3rem;
-    margin-top: 5px;
-}
-
-.complete_btn:hover {
-    background-color: #2de72d;
-    color: #fff;
-}
-
-.delete_btn:hover {
-    background-color: #e72d2d;
-    color: #fff;
-}
-
-.delete-todo {
-    display: none;
 }

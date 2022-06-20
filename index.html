@@ -8,23 +8,37 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <header>
-        <h1>Paper Fire</h1>
-    </header>
-    <form>
-        <input type="text" class="todo_input">
-        <button class="todo_button" type="submit">Go</button>
-        <select id="option_main">
-            <option value="pendent">Pendente</option>
-            <option value="all">Tudo</option>
-            <option value="completed">Completado</option>
-        </select>
-    </form>
-    <div class="todo_container">
-        <ul class="todo_list">
-        </ul>
+    <div class="setting">
+        <img src="./images/icon-setting.png" alt="setting">
     </div>
-    
-    <script src="./app.js"></script>
+    <div class="container">
+        <div class="header">
+            <div class="title">PAPER FIRE</div>
+        </div>
+        <div class="new-todo">
+            <div class="new-todo-input">
+                <form>
+                    <input type="text" placeholder="Crie um novo todo...">
+                </form>
+            </div>
+            <div class="button-add">
+                    <img src="./images/icon-add.png" alt="add todo">
+            </div>
+        </div>
+        <div class="todo-items-wrapper">
+            <div class="todo-items">
+                <div class="todo-item">
+                    <div class="check">
+                        <div class="check-mark">
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="todo-text">
+                        Cut the item
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

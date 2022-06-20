@@ -1,5 +1,5 @@
-// Variables
-const btnSend = document.querySelector(".todo_button");
+/* // Variables
+const btnAdd = document.querySelector(".button-add");
 const todoList = document.querySelector(".todo_list");
 const todoInput = document.querySelector(".todo_input");
 const todoSelect = document.querySelector("#option_main");
@@ -9,7 +9,7 @@ const dataTodo = {
 
 // Events
 btnSend.addEventListener("click", addTodo);
-
+alert("opa")
 // Functions
 function addTodo(event) {
   event.preventDefault();
@@ -99,7 +99,7 @@ const completeTodoList = (todoDiv, completeButton) => {
   completeButton.style.display = "none";
 }
 
-window.onload = storageLocal();
+/* window.onload = storageLocal();
 
 function storageLocal() {
   const data = JSON.parse(localStorage.getItem('todo'));
@@ -156,3 +156,4 @@ function storageLocal() {
       })
     }
 }
+ */ 

@@ -17,28 +17,27 @@
         </div>
         <div class="new-todo">
             <div class="new-todo-input">
-                <form>
-                    <input type="text" placeholder="Crie um novo todo...">
+                <form> 
+                    <input type="text" class="todo-input" placeholder="Crie um novo todo...">
+                    
+                    <button class="button-add">
+                        <img src="./images/icon-add.png" alt="add todo">
+                    </button>
                 </form>
             </div>
-            <div class="button-add">
-                    <img src="./images/icon-add.png" alt="add todo">
-            </div>
+        </div>
+        <div class="container-option">
+            <select id="option-main">
+                <option value="pendent">Pendente</option>
+                <option value="all">Tudo</option>
+                <option value="completed">Completado</option>
+            </select>
         </div>
         <div class="todo-items-wrapper">
             <div class="todo-items">
-                <div class="todo-item">
-                    <div class="check">
-                        <div class="check-mark">
-                            <img src="" alt="">
-                        </div>
-                    </div>
-                    <div class="todo-text">
-                        Cut the item
-                    </div>
-                </div>
             </div>
         </div>
     </div>
+    <script src="./app.js"></script>
 </body>
 </html>

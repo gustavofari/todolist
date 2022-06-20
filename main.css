@@ -23,7 +23,7 @@ body {
 }
 
 .container {
-    width: 37vw;
+    width: 50vw;
     max-width: 700px;
     margin: 0 30px;
     margin-top: 100px;
@@ -44,40 +44,47 @@ body {
 
 .new-todo {
     background-color: #f1f1f1;
-    padding: 0 1rem;
     margin-top: 50px;
     border-radius: 25px;
-    display: flex;
 }
 
 .button-add {
-    width: 30px;
+    border: none;
+    background: none;
+    cursor: pointer;
     display: flex;
-    align-items: center;
     justify-content: center;
 }
 
 .button-add img {
-    width: 60px;
+    width: 55px;
 }
 
 .new-todo-input {
     flex-grow: 1;
-    display: flex;
-    align-items: center;
 }
 
 .new-todo-input form {
     flex-grow: 1;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .new-todo-input input {
-    width: 100%;
-    padding: 10px 0px 10px 20px;
+    padding: 1rem 0 1rem 1.2rem;
     background-color: transparent;
     border: none;
     outline: none;
     font-size: 1.2rem;
+}
+
+.container-option {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .todo-item {
@@ -99,7 +106,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70%;
+    width: 80%;
 }
 
 .check {
@@ -115,4 +122,26 @@ body {
     border-radius: 50%;
     border: 2px solid #00000093;
     cursor: pointer;
+}
+
+.delete-button {
+    background-color: rebeccapurple;
+    border-radius: 0 25px 25px 0;
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-button img {
+    width: 30px;
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: .5;
+}
+
+.delete-todo {
+    display: none;
 }

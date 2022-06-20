@@ -1,69 +1,77 @@
-/* // Variables
+// Variables
 const btnAdd = document.querySelector(".button-add");
-const todoList = document.querySelector(".todo_list");
-const todoInput = document.querySelector(".todo_input");
-const todoSelect = document.querySelector("#option_main");
+const todoList = document.querySelector(".todo-items");
+const todoInput = document.querySelector(".todo-input");
+const todoSelect = document.querySelector("#option-main");
 const dataTodo = {
-  todo1: [],
-}
+  todoItem: [],
+};
 
 // Events
-btnSend.addEventListener("click", addTodo);
-alert("opa")
+btnAdd.addEventListener("click", addTodo);
+
 // Functions
 function addTodo(event) {
   event.preventDefault();
 
-  //Todo DIV
-  const todoDiv = document.createElement("div");
-  todoDiv.classList.add("todo");
+  if (todoInput.value.length > 0) {
+    //Todo DIV main
+    const todoDiv = document.createElement("div");
+    todoDiv.classList.add("todo-item");
 
-  //Create LI
-  const newTodo = document.createElement("li");
-  newTodo.innerText = todoInput.value;
-  dataTodo.todo1.push(todoInput.value);
-  todoInput.value = "";
-  newTodo.classList.add("todo_item");
-  todoDiv.appendChild(newTodo);
+    //CHECK MARK BUTTON
+    const check = document.createElement("div");
+    // const completeImg = document.createElement("img");
+    // completeImg.src = './images/icon-complete.png';
+    // completeButton.appendChild(completeImg);
+    check.classList.add("check");
 
-  //CHECK MARK BUTTON
-  const completeButton = document.createElement("button");
-  const completeImg = document.createElement("img");
-  completeImg.src = './images/icon-complete.png';
-  completeButton.appendChild(completeImg);
-  completeButton.classList.add("complete_btn");
-  todoDiv.appendChild(completeButton);
+    const checkMark = document.createElement("div");
+    checkMark.classList.add("check-mark");
 
-  completeButton.addEventListener("click", () => {
-     completeTodoList(todoDiv, completeButton) 
+    check.appendChild(checkMark);
+    todoDiv.appendChild(check);
+
+    check.addEventListener("click", () => {
+      completeTodoList(todoDiv);
     });
-    
 
-  //DELETE TODO
-  const deleteButton = document.createElement("button");
-  const deleteImg = document.createElement("img");
-  deleteImg.src = './images/icon-delete.png';
-  deleteButton.appendChild(deleteImg);
-  deleteButton.classList.add("delete_btn");
-  todoDiv.appendChild(deleteButton);
+    //Todo item text
+    const todoText = document.createElement("todo-text");
+    todoText.innerText = todoInput.value;
+    dataTodo.todoItem.push(todoInput.value);
+    todoInput.value = "";
+    todoText.classList.add("todo-text");
+    todoDiv.appendChild(todoText);
 
-  deleteButton.addEventListener("click", () => {
-           
-    dataTodo.todo1.splice(dataTodo.todo1.indexOf(newTodo.innerText), 1);
-    console.log(dataTodo.todo1);
-    todoDiv.remove(this);
-    storageLocal();
-    console.log("foi")
-  });
+    //DELETE TODO
+    const deleteButton = document.createElement("div");
+    const deleteImg = document.createElement("img");
+    deleteImg.src = "./images/icon-delete.png";
 
-  // Add todo
-  todoList.appendChild(todoDiv);
+    deleteButton.classList.add("delete-button");
 
-  //SELECT OPTION
-  todoSelect.addEventListener("click", selectTodo);
+    deleteButton.appendChild(deleteImg);
+    todoDiv.appendChild(deleteButton);
 
-  // Storage
-  localStorage.setItem("todo", JSON.stringify(dataTodo.todo1));
+    deleteButton.addEventListener("click", () => {
+      dataTodo.todoItem.splice(dataTodo.todoItem.indexOf(todoText.innerText), 1);
+      todoDiv.remove(this);
+      localStorage.setItem("todo", JSON.stringify(dataTodo.todoItem));
+    });
+
+    // Add todo
+    todoList.appendChild(todoDiv);
+
+    //SELECT OPTION
+    todoSelect.addEventListener("click", selectTodo);
+
+    // Update Storage
+    localStorage.setItem("todo", JSON.stringify(dataTodo.todoItem));
+  } else {
+    alert("Não é possível vazio.");
+    return;
+  }
 }
 
 const selectTodo = () => {
@@ -92,56 +100,63 @@ const selectTodo = () => {
       }
     }
   }
-}
+};
 
-const completeTodoList = (todoDiv, completeButton) => {
+const completeTodoList = (todoDiv) => {
   todoDiv.classList.toggle("completed");
-  completeButton.style.display = "none";
-}
+};
 
-/* window.onload = storageLocal();
+window.onload = storageLocal();
 
 function storageLocal() {
-  const data = JSON.parse(localStorage.getItem('todo'));
-  if(data){
+  const data = JSON.parse(localStorage.getItem("todo"));
+  if (data) {
       data.map((element) => {
-      //Todo DIV
-      dataTodo.todo1.push(element);
-      const todoDiv = document.createElement("div");
-      todoDiv.classList.add("todo");
 
-      //Create LI
-      const newTodo = document.createElement("li");
-      newTodo.innerText = element;
-      newTodo.classList.add("todo_item");
-      todoDiv.appendChild(newTodo);
+      //Todo DIV
+      dataTodo.todoItem.push(element);
+      const todoDiv = document.createElement("div");
+      todoDiv.classList.add("todo-item");
 
       //CHECK MARK BUTTON
-      const completeButton = document.createElement("button");
-      const completeImg = document.createElement("img");
-      completeImg.src = './images/icon-complete.png';
-      completeButton.appendChild(completeImg);
-      completeButton.classList.add("complete_btn");
-      todoDiv.appendChild(completeButton);
+      const check = document.createElement("div");
+      // const completeImg = document.createElement("img");
+      // completeImg.src = './images/icon-complete.png';
+      // completeButton.appendChild(completeImg);
+      check.classList.add("check");
 
-      completeButton.addEventListener("click", () => {
-        completeTodoList(todoDiv, completeButton) 
-        });
-        
+      const checkMark = document.createElement("div");
+      checkMark.classList.add("check-mark");
+
+      check.appendChild(checkMark);
+      todoDiv.appendChild(check);
+
+      check.addEventListener("click", () => {
+        completeTodoList(todoDiv);
+      });
+
+      //Todo item text
+      const todoText = document.createElement("todo-text");
+      todoText.innerText = element;
+      todoText.classList.add("todo-text");
+      todoDiv.appendChild(todoText);
 
       //DELETE TODO
-      const deleteButton = document.createElement("button");
+      const deleteButton = document.createElement("div");
       const deleteImg = document.createElement("img");
-      deleteImg.src = './images/icon-delete.png';
+      deleteImg.src = "./images/icon-delete.png";
+
+      deleteButton.classList.add("delete-button");
+
       deleteButton.appendChild(deleteImg);
-      deleteButton.classList.add("delete_btn");
       todoDiv.appendChild(deleteButton);
 
+      
       deleteButton.addEventListener("click", () => {
-        
-        dataTodo.todo1.splice(dataTodo.todo1.indexOf(newTodo.innerText), 1);
+        dataTodo.todoItem.splice(dataTodo.todoItem.indexOf(todoText.innerText), 1);
         todoDiv.remove(this);
-        localStorage.setItem("todo", JSON.stringify(dataTodo.todo1));
+        
+        localStorage.setItem("todo", JSON.stringify(dataTodo.todoItem));
       });
 
       // Add todo
@@ -149,11 +164,9 @@ function storageLocal() {
 
       //SELECT OPTION
       todoSelect.addEventListener("click", selectTodo);
-
-      console.log(dataTodo.todo1)
-      // Storage
-      localStorage.setItem("todo", JSON.stringify(dataTodo.todo1));
-      })
-    }
+      
+      // Update Storage
+      localStorage.setItem("todo", JSON.stringify(dataTodo.todoItem)); 
+    });
+  }
 }
- */ 

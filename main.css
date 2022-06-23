@@ -78,6 +78,7 @@ body {
     border: none;
     outline: none;
     font-size: 1.2rem;
+    width: 100%;
 }
 
 .container-option {
@@ -136,6 +137,7 @@ body {
 
 .delete-button img {
     width: 30px;
+    pointer-events: none;
 }
 
 .completed {

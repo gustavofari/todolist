@@ -10,15 +10,15 @@ const dataTodo = {
 // Events
 btnAdd.addEventListener("click", createTodo);
 
+// Functions
+
 const updateStorage = () => {
   localStorage.setItem("todo", JSON.stringify(dataTodo.todoItem));
-}
+};
 
 // Functions
-function createTodo(event, element) {
+function createTodo(event) {
   event.preventDefault();
-
-  var name = element || "";
 
   if (todoInput.value.length > 0) {
     //Todo DIV main
@@ -55,14 +55,10 @@ function createTodo(event, element) {
     const deleteImg = document.createElement("img");
     deleteImg.src = "./images/icon-delete.png";
 
-    deleteButton.classList.add("delete-button");
+    (deleteImg, deleteButton).classList.add("delete-button");
 
     deleteButton.appendChild(deleteImg);
     todoDiv.appendChild(deleteButton);
-
-    deleteButton.addEventListener("click", () => {
-      deleteTodoList(deleteButton, todoDiv, todoText)
-    });
 
     // Add todo
     todoList.appendChild(todoDiv);
@@ -76,7 +72,7 @@ function createTodo(event, element) {
     alert("Não é possível vazio.");
     return;
   }
-}
+};
 
 const selectTodo = () => {
   if (todoSelect.value === "all") {
@@ -108,6 +104,22 @@ const selectTodo = () => {
 
 const completeTodoList = (todoDiv) => {
   todoDiv.classList.toggle("completed");
+  selectTodo();
+};
+
+const deleteTodoList = (e) => {
+  const item = e.target;
+
+  if(item.classList[0] === "delete-button"){
+    const todo = item.parentElement;
+    for(let todos of todo.children){
+        if(todos.classList[0] === "todo-text"){
+          dataTodo.todoItem.splice(dataTodo.todoItem.indexOf(todos.innerText), 1);
+        }
+    }
+    todo.remove();
+    updateStorage(); 
+  }
 };
 
 window.onload = storageLocal();
@@ -156,12 +168,7 @@ function storageLocal() {
       todoDiv.appendChild(deleteButton);
 
       
-      deleteButton.addEventListener("click", () => {
-        dataTodo.todoItem.splice(dataTodo.todoItem.indexOf(todoText.innerText), 1);
-        todoDiv.remove(this);
-        
-        updateStorage();
-      });
+      todoList.addEventListener("click", deleteTodoList);
 
       // Add todo
       todoList.appendChild(todoDiv);
@@ -173,13 +180,4 @@ function storageLocal() {
       updateStorage();
     });
   }
-}
-
-const deleteTodoList = (deleteButton, todoDiv, todoText) => {
-  deleteButton.classList.add("delete-button");
-
-  dataTodo.todoItem.splice(dataTodo.todoItem.indexOf(todoText.innerText), 1);
-  todoDiv.remove(this);
-  updateStorage();
-
-}
+};

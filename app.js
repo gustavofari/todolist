@@ -8,11 +8,17 @@ const dataTodo = {
 };
 
 // Events
-btnAdd.addEventListener("click", addTodo);
+btnAdd.addEventListener("click", createTodo);
+
+const updateStorage = () => {
+  localStorage.setItem("todo", JSON.stringify(dataTodo.todoItem));
+}
 
 // Functions
-function addTodo(event) {
+function createTodo(event, element) {
   event.preventDefault();
+
+  var name = element || "";
 
   if (todoInput.value.length > 0) {
     //Todo DIV main
@@ -33,7 +39,7 @@ function addTodo(event) {
     todoDiv.appendChild(check);
 
     check.addEventListener("click", () => {
-      completeTodoList(todoDiv);
+        completeTodoList(todoDiv);
     });
 
     //Todo item text
@@ -55,9 +61,7 @@ function addTodo(event) {
     todoDiv.appendChild(deleteButton);
 
     deleteButton.addEventListener("click", () => {
-      dataTodo.todoItem.splice(dataTodo.todoItem.indexOf(todoText.innerText), 1);
-      todoDiv.remove(this);
-      localStorage.setItem("todo", JSON.stringify(dataTodo.todoItem));
+      deleteTodoList(deleteButton, todoDiv, todoText)
     });
 
     // Add todo
@@ -67,7 +71,7 @@ function addTodo(event) {
     todoSelect.addEventListener("click", selectTodo);
 
     // Update Storage
-    localStorage.setItem("todo", JSON.stringify(dataTodo.todoItem));
+    updateStorage();
   } else {
     alert("Não é possível vazio.");
     return;
@@ -156,7 +160,7 @@ function storageLocal() {
         dataTodo.todoItem.splice(dataTodo.todoItem.indexOf(todoText.innerText), 1);
         todoDiv.remove(this);
         
-        localStorage.setItem("todo", JSON.stringify(dataTodo.todoItem));
+        updateStorage();
       });
 
       // Add todo
@@ -166,7 +170,16 @@ function storageLocal() {
       todoSelect.addEventListener("click", selectTodo);
       
       // Update Storage
-      localStorage.setItem("todo", JSON.stringify(dataTodo.todoItem)); 
+      updateStorage();
     });
   }
+}
+
+const deleteTodoList = (deleteButton, todoDiv, todoText) => {
+  deleteButton.classList.add("delete-button");
+
+  dataTodo.todoItem.splice(dataTodo.todoItem.indexOf(todoText.innerText), 1);
+  todoDiv.remove(this);
+  updateStorage();
+
 }

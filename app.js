@@ -60,6 +60,8 @@ function createTodo(event) {
     deleteButton.appendChild(deleteImg);
     todoDiv.appendChild(deleteButton);
 
+    todoList.addEventListener("click", deleteTodoList);
+
     // Add todo
     todoList.appendChild(todoDiv);
 

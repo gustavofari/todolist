@@ -1,7 +1,7 @@
 # Todo List
 
 ## General info
-This project is simple todo app in development.
+> This project is simple todo app in development.
 	
 ## Technologies
 Project is created with:

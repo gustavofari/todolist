@@ -11,8 +11,7 @@ const dataTodo = {
 btnAdd.addEventListener("click", createTodo);
 
 // Functions
-
-const updateStorage = () => {
+function updateStorage (){
   localStorage.setItem("todo", JSON.stringify(dataTodo.todoItem));
 };
 
@@ -27,9 +26,6 @@ function createTodo(event) {
 
     //CHECK MARK BUTTON
     const check = document.createElement("div");
-    // const completeImg = document.createElement("img");
-    // completeImg.src = './images/icon-complete.png';
-    // completeButton.appendChild(completeImg);
     check.classList.add("check");
 
     const checkMark = document.createElement("div");
@@ -37,9 +33,9 @@ function createTodo(event) {
 
     check.appendChild(checkMark);
     todoDiv.appendChild(check);
-
+    
     check.addEventListener("click", () => {
-        completeTodoList(todoDiv);
+        completeTodoList(todoDiv, checkMark);
     });
 
     //Todo item text
@@ -76,7 +72,7 @@ function createTodo(event) {
   }
 };
 
-const selectTodo = () => {
+function selectTodo() {
   if (todoSelect.value === "all") {
     for (let obj = 0; obj < todoList.children.length; obj++) {
       todoList.children[obj].classList.remove("delete-todo");
@@ -104,24 +100,11 @@ const selectTodo = () => {
   }
 };
 
-const completeTodoList = (todoDiv) => {
+function completeTodoList(todoDiv, checkMark) {
   todoDiv.classList.toggle("completed");
+  checkMark.classList.toggle("completed-check");
+
   selectTodo();
-};
-
-const deleteTodoList = (e) => {
-  const item = e.target;
-
-  if(item.classList[0] === "delete-button"){
-    const todo = item.parentElement;
-    for(let todos of todo.children){
-        if(todos.classList[0] === "todo-text"){
-          dataTodo.todoItem.splice(dataTodo.todoItem.indexOf(todos.innerText), 1);
-        }
-    }
-    todo.remove();
-    updateStorage(); 
-  }
 };
 
 window.onload = storageLocal();
@@ -150,7 +133,7 @@ function storageLocal() {
       todoDiv.appendChild(check);
 
       check.addEventListener("click", () => {
-        completeTodoList(todoDiv);
+        completeTodoList(todoDiv, checkMark);
       });
 
       //Todo item text
@@ -181,5 +164,20 @@ function storageLocal() {
       // Update Storage
       updateStorage();
     });
+  }
+};
+
+function deleteTodoList(e) {
+  const item = e.target;
+
+  if(item.classList[0] === "delete-button"){
+    const todo = item.parentElement;
+    for(let todos of todo.children){
+        if(todos.classList[0] === "todo-text"){
+          dataTodo.todoItem.splice(dataTodo.todoItem.indexOf(todos.innerText), 1);
+        }
+    }
+    todo.remove();
+    updateStorage(); 
   }
 };

@@ -1,4 +1,6 @@
 // Variables
+const btnSetting = document.querySelector(".setting");
+const btnSettingMenu = document.querySelector(".menu-setting");
 const btnAdd = document.querySelector(".button-add");
 const todoList = document.querySelector(".todo-items");
 const todoInput = document.querySelector(".todo-input");
@@ -7,15 +9,17 @@ const dataTodo = {
   todoItem: [],
 };
 
+delete
+
 // Events
 btnAdd.addEventListener("click", createTodo);
+btnSetting.addEventListener("click", settingButton);
 
 // Functions
 function updateStorage (){
   localStorage.setItem("todo", JSON.stringify(dataTodo.todoItem));
 };
 
-// Functions
 function createTodo(event) {
   event.preventDefault();
 
@@ -75,16 +79,16 @@ function createTodo(event) {
 function selectTodo() {
   if (todoSelect.value === "all") {
     for (let obj = 0; obj < todoList.children.length; obj++) {
-      todoList.children[obj].classList.remove("delete-todo");
+      todoList.children[obj].classList.remove("delete");
     }
   }
 
   if (todoSelect.value === "completed") {
     for (let obj = 0; obj < todoList.children.length; obj++) {
       if (todoList.children[obj].classList.contains("completed")) {
-        todoList.children[obj].classList.remove("delete-todo");
+        todoList.children[obj].classList.remove("delete");
       } else {
-        todoList.children[obj].classList.add("delete-todo");
+        todoList.children[obj].classList.add("delete");
       }
     }
   }
@@ -92,9 +96,9 @@ function selectTodo() {
   if (todoSelect.value === "pendent") {
     for (let obj = 0; obj < todoList.children.length; obj++) {
       if (todoList.children[obj].classList.contains("completed")) {
-        todoList.children[obj].classList.add("delete-todo");
-      } else if (todoList.children[obj].classList.contains("delete-todo")) {
-        todoList.children[obj].classList.remove("delete-todo");
+        todoList.children[obj].classList.add("delete");
+      } else if (todoList.children[obj].classList.contains("delete")) {
+        todoList.children[obj].classList.remove("delete");
       }
     }
   }
@@ -181,3 +185,18 @@ function deleteTodoList(e) {
     updateStorage(); 
   }
 };
+
+// Setting button
+function settingButton() {
+  const setting = btnSetting.children[0];
+
+  setting.classList.toggle("active-setting");
+  btnSettingMenu.classList.toggle("delete");
+
+  if(!setting.classList.contains("active-setting")){
+    setting.classList.add("active-setting-out");
+  } 
+  else {
+    setting.classList.remove("active-setting-out");
+  }
+}

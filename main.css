@@ -8,6 +8,7 @@
 }
 
 body {
+    overflow: hidden;
     display: flex;
     justify-content: center;
 }
@@ -25,11 +26,8 @@ body {
     justify-content: center;
 }
 
-.title {
-    color: #000000;
-    font-size: 2rem;
-    font-weight: bold;
-    letter-spacing: 10px;
+.logo {
+    user-select: none;
 }
 
 .new-todo {
@@ -48,6 +46,7 @@ body {
 
 .button-add img {
     width: 55px;
+    user-select: none;
 }
 
 .new-todo-input {
@@ -77,15 +76,16 @@ body {
     justify-content: center;
 }
 
-.select {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #020802;
-    color: #f1f1f1;
+.option-main {
+    color: #202020;
+    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #ffffff;
+    text-align: center;
+    outline: none;
     width: 25vw;
     height: 5vh;
     border-radius: 15px;
+    -webkit-appearance: none;
+    background-position-x: 220px;
 }
 
 .select span {
@@ -100,9 +100,13 @@ body {
     background-color: #f1f1f1;
     color: #000000;
     font-size: 18px;
-    border-radius: 20px;
+    border-radius: 30px;
     
     transition: .4s;
+}
+
+.todo-item.dark {
+    background-color: #252525;
 }
 
 .todo-items-wrapper {
@@ -114,6 +118,10 @@ body {
     justify-content: center;
     align-items: center;
     width: 80%;
+}
+
+.todo-item.dark {
+    color: #fff;
 }
 
 .check {
@@ -132,6 +140,10 @@ body {
     transition: .2s;
 }
 
+.check-mark.dark{
+    background-color: #ffffff93;
+}
+
 .check-mark:hover {
     background-color: #444444;
     border: 2px solid #6dff9e;
@@ -142,18 +154,23 @@ body {
 }
 
 .delete-button {
-    background-color: rebeccapurple;
     border-radius: 0 25px 25px 0;
     width: 15%;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: .1s ease-in-out;
+}
+
+.delete-button:hover {
+    background-color: #da5d5d;
 }
 
 .delete-button img {
     width: 30px;
     pointer-events: none;
+    user-select: none;
 }
 
 .completed {
@@ -182,6 +199,7 @@ body {
 
 .setting img {
     width: 35px;
+    user-select: none;
 }
 
 .active-setting{
@@ -190,18 +208,6 @@ body {
 
 .active-setting-out {
     animation: loading-out 1s;
-}
-
-.menu-setting {
-    position: absolute;
-    right: -5px;
-    top: -5px;
-    background-color: #e0dddd;
-    height: 150px;
-    width: 180px;
-    z-index: -1;
-    border-radius: 5px;
-    transition: 1s;
 }
 
 @keyframes loading {
@@ -220,4 +226,105 @@ body {
 	100% {
 		transform: rotate(-360deg);
 	}
+}
+
+.menu-setting {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    background-color: #3a3a3a;
+    width: 19vw;
+    max-width: 220px;
+    height: 10vh;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    animation: menu-setting-out 1s forwards;
+    
+}
+
+.menu-setting.active {
+    transition: all 1.5s ease;
+    right: 0;
+    display: block;
+    animation: menu-setting 1s forwards;
+}
+
+@keyframes menu-setting {
+    0% {
+        transform: translateX(300px);
+    }
+	100% {
+		transform: translateX(0px);
+	}
+}
+
+@keyframes menu-setting-out {
+    0% {
+        transform: translateX(0);
+    }
+	100% {
+		transform: translateX(300px);
+	}
+}
+
+.checkbox-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 1rem;
+    
+} 
+
+body.dark {
+    background-color: #18191d;
+}
+
+.checkbox {
+	opacity: 0;
+	position: absolute;
+}
+
+.label {
+	background-color: #111;
+	border-radius: 50px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 5px;
+	position: relative;
+	height: 22px;
+	width: 46px;
+	transform: scale(1.5);
+}
+
+.label .ball {
+	background-color: #fff;
+	border-radius: 50%;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	height: 18px;
+	width: 18px;
+	transform: translateX(0px);
+	transition: transform 0.2s linear;
+}
+
+.checkbox-container span {
+    padding: 30px;
+    color: #e9e9e9;
+}
+
+.checkbox:checked + .label .ball {
+	transform: translateX(24px);
+}
+
+.fa-moon {
+	color: #f1c40f;
+}
+
+#fa-sun {
+	color: #f39c12;
 }

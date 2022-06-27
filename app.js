@@ -1,19 +1,21 @@
 // Variables
 const btnSetting = document.querySelector(".setting");
+const settingImg = document.querySelector("#setting-img")
 const btnSettingMenu = document.querySelector(".menu-setting");
 const btnAdd = document.querySelector(".button-add");
 const todoList = document.querySelector(".todo-items");
 const todoInput = document.querySelector(".todo-input");
-const todoSelect = document.querySelector("#option-main");
+const todoSelect = document.querySelector(".option-main");
+const chk = document.getElementById('chk');
+
 const dataTodo = {
   todoItem: [],
 };
 
-delete
-
 // Events
 btnAdd.addEventListener("click", createTodo);
 btnSetting.addEventListener("click", settingButton);
+chk.addEventListener('change', themeChange);
 
 // Functions
 function updateStorage (){
@@ -24,6 +26,7 @@ function createTodo(event) {
   event.preventDefault();
 
   if (todoInput.value.length > 0) {
+    
     //Todo DIV main
     const todoDiv = document.createElement("div");
     todoDiv.classList.add("todo-item");
@@ -191,12 +194,29 @@ function settingButton() {
   const setting = btnSetting.children[0];
 
   setting.classList.toggle("active-setting");
-  btnSettingMenu.classList.toggle("delete");
+  btnSettingMenu.classList.toggle("active");
 
   if(!setting.classList.contains("active-setting")){
     setting.classList.add("active-setting-out");
   } 
   else {
     setting.classList.remove("active-setting-out");
+  } 
+}
+
+function themeChange(){
+  const logo = document.querySelector(".logo");
+
+  document.body.classList.toggle('dark');
+  
+
+  // IMAGES
+  if(document.body.classList.contains("dark")){
+    settingImg.src = "./images/icon-setting-white.png";
+    logo.src = "./images/icon-fire-yellow.png";
+  }
+  else {
+    logo.src = "./images/icon-fire.png";
+    settingImg.src = "./images/icon-setting.png";
   }
 }
